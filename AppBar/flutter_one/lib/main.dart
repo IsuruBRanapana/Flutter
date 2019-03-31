@@ -5,19 +5,27 @@ void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget{
   @override
-  Widget build(context){
+  Widget build(BuildContext context){
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
           title: Text('Flutter'),
         ),
-        body: Card(
-          child: Column(
-            children: <Widget>[
-              Image.asset('assets/Breakfast.jpg'),
-              Text('Breakfast is ready')
-            ],
-          ),
+        body: Column(
+          children: [
+            RaisedButton(
+              onPressed: (){},
+              child: Text('Order'),
+            ),
+            Card(
+              child: Column(
+                children: <Widget>[
+                  Image.asset('assets/Breakfast.jpg'),
+                  Text('Breakfast is Ready'),
+                ],
+              ),
+            ),
+          ],
         ),
       ),
     );
