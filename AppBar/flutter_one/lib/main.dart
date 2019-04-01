@@ -11,12 +11,17 @@ class MyApp extends StatelessWidget{
         appBar: AppBar(
           title: Text('Flutter'),
         ),
+
         body: Column(
           children: [
-            RaisedButton(
-              onPressed: (){},
-              child: Text('Order'),
+            Container(
+              margin: EdgeInsets.all(15.0),
+              child: RaisedButton(
+                onPressed: (){},
+                child: Text('Order'),
+              ),
             ),
+
             Card(
               child: Column(
                 children: <Widget>[
