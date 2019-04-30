@@ -12,7 +12,7 @@ class Test1App extends StatefulWidget {
   }
 }
 class _Test1AppState extends State<Test1App>{
-  List<String> _products=['Food Tester'];
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -24,33 +24,9 @@ class _Test1AppState extends State<Test1App>{
         
         body: Column(
           children: <Widget>[
-            Container(
-              margin: EdgeInsets.all(20.0),
-              child: RaisedButton(
-                  onPressed:(){
-                    setState(() {
-                      _products.add('Advanced Food tester');
-                    });
-                  },
-                  child: Text('First'),
-              ),
-            ),
 
-            Column(
-              children: _products
-                  .map(
-                    (element)=>
-                      Card(
-                        child: Column(
-                          children: <Widget>[
-                            Image.asset('assets/1.jpg'),
-                            Text(element)
-                          ],
-                        ),
-                      ),
-                  )
-                  .toList(),
-            ),
+
+
 
             RaisedButton(
                 onPressed: (){},
