@@ -13,17 +13,20 @@ class _ProductManagerState extends State<ProductManager>{
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return Container(
-      margin: EdgeInsets.all(20.0),
-      child: RaisedButton(
-        onPressed:(){
-          setState(() {
-            _products.add('Advanced Food tester');
-          });
-        },
-        child: Text('First'),
-      ),
+    return Column(
+        children: <Widget>[Container(
+          margin: EdgeInsets.all(20.0),
+          child: RaisedButton(
+            onPressed:(){
+            setState(() {
+              _products.add('Advanced Food tester');
+            });
+            },
+            child: Text('First'),
+          ),
+        ),
+        Products(_products),
+        ],
     );
-    Products(_products);
   }
 }

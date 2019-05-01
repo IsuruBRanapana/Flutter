@@ -1,18 +1,10 @@
 import 'package:flutter/material.dart';
-
+import './products_manager.dart';
 void main(){
   runApp(Test1App());
 }
 
-class Test1App extends StatefulWidget {
-  @override
-  State<StatefulWidget> createState() {
-    // TODO: implement createState
-    return _Test1AppState();
-  }
-}
-class _Test1AppState extends State<Test1App>{
-
+class Test1App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -24,10 +16,7 @@ class _Test1AppState extends State<Test1App>{
         
         body: Column(
           children: <Widget>[
-
-
-
-
+            ProductManager(),
             RaisedButton(
                 onPressed: (){},
                 child: Text('Second'),
