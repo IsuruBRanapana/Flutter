@@ -56,8 +56,25 @@ class Home extends StatelessWidget{
       children: <Widget>[
         air("Sri Lankan", "Sri Lanka to German"),
         air("Oman Air", "Sri Lanka to Oman"),
-        air("Emirates", "US to Sri Lanka")
+        air("Emirates", "US to Sri Lanka"),
+        AirImageAssets()
       ],
+    );
+  }
+}
+
+class AirImageAssets extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+    AssetImage assetImage=AssetImage('images/volkswagen.png');
+    Image image=Image(image: assetImage,
+      width: 100.0,
+      height: 100.0,
+    );
+    return Container(
+      child:image,
+      margin: EdgeInsets.all(10.0),
+      padding: EdgeInsets.all(3.0),
     );
   }
 
