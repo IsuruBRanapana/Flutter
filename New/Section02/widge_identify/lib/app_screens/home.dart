@@ -17,6 +17,8 @@ class Home extends StatelessWidget{
             color: Colors.white,
             decoration: TextDecoration.none,
             fontSize: 36,
+            fontFamily:'Raleway',
+            fontWeight: FontWeight.w300,
             backgroundColor: Colors.lightBlue[800]
           ),
         ),
