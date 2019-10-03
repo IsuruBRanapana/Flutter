@@ -57,7 +57,8 @@ class Home extends StatelessWidget{
         air("Sri Lankan", "Sri Lanka to German"),
         air("Oman Air", "Sri Lanka to Oman"),
         air("Emirates", "US to Sri Lanka"),
-        AirImageAssets()
+        AirImageAssets(),
+        AirBookingButton()
       ],
     );
   }
@@ -77,6 +78,48 @@ class AirImageAssets extends StatelessWidget{
       padding: EdgeInsets.all(3.0),
     );
   }
+}
 
+
+class AirBookingButton extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 250.0,
+      height: 50.0,
+      margin: EdgeInsets.all(20.0),
+     // padding: EdgeInsets.all(10.0),
+      child: RaisedButton(
+        child: Text(
+          "Book Your Flight",
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 20.0,
+            fontFamily: 'Raleway',
+            fontWeight: FontWeight.w700
+          ),
+        ),
+        color: Colors.amber[900],
+        elevation: 6.0,
+        onPressed: (){
+          airBook(context);
+        },
+      ),
+    );
+  }
+
+  void airBook(BuildContext context){
+    var alertDialog = AlertDialog(
+      title: Text("Successful"),
+      content: Text("Safe flight"),
+    );
+
+    showDialog(
+        context: context,
+        builder: (BuildContext context){
+          return alertDialog;
+        }
+    );
+  }
 }
 
