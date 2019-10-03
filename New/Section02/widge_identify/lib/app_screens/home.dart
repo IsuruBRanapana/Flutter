@@ -9,10 +9,16 @@ class Home extends StatelessWidget{
         color: Colors.lightBlue[900],
         margin: EdgeInsets.all(15.0),
         padding: EdgeInsets.only(left: 4.0,right: 4.0,top: 10.0),
-        width: 200.0,
-        height: 500.0,
+        //width: 200.0,
+        //height: 500.0,
         child: Text("ABCD",
           textDirection: TextDirection.ltr,
+          style: TextStyle(
+            color: Colors.white,
+            decoration: TextDecoration.none,
+            fontSize: 36,
+            backgroundColor: Colors.lightBlue[800]
+          ),
         ),
       ),
     );
