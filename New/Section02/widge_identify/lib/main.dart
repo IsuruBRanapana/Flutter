@@ -62,11 +62,23 @@ Widget getListView(){
             listItems[index]
           ),
           onTap: (){
-
+            showSnackBar(context,listItems[index]);
           },
           leading: Icon(Icons.accessibility),
         );
       }
   );
   return listView;
+}
+
+void showSnackBar(BuildContext context,String item){
+  var snackBar=SnackBar(
+    content: Text(" You tapped $item "),
+    action: SnackBarAction(
+      label: "UNDO",
+      onPressed: (){},
+    ),
+  );
+
+  Scaffold.of(context).showSnackBar(snackBar);
 }
