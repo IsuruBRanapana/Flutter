@@ -7,6 +7,10 @@ void main(){
         title: "Identify the widgets",
         home: Scaffold(
           body: getListView(),
+          floatingActionButton: FloatingActionButton(
+            child: Icon(Icons.add),
+            tooltip: "Add item",
+          ),
         ),
       )
   );
