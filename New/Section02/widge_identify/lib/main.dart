@@ -12,6 +12,9 @@ void main(){
   );
 }
 
+
+//for basic list
+/*
 Widget getListView(){
   var list=ListView(
     children: <Widget>[
@@ -37,4 +40,29 @@ Widget getListView(){
 
   return list;
 
+}
+*/
+
+//for long list
+List<String> getListItems(){
+  var items= List<String>.generate(1000, (counter)=>"Item $counter");
+  return items;
+}
+
+Widget getListView(){
+  var listItems=getListItems();
+  var listView=ListView.builder(
+      itemBuilder: (context,index){
+        return ListTile(
+          title: Text(
+            listItems[index]
+          ),
+          onTap: (){
+
+          },
+          leading: Icon(Icons.accessibility),
+        );
+      }
+  );
+  return listView;
 }
