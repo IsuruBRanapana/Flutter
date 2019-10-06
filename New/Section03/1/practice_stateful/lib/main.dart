@@ -18,7 +18,9 @@ class CitiWidget extends StatefulWidget{
 }
 
 class _FavouriteCitiWidget extends State<CitiWidget>{
-  String nameCity;
+  String nameCity = "";
+  var _cur=['rs','dol','pou','other'];
+  var _currentCur='rs';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,6 +40,22 @@ class _FavouriteCitiWidget extends State<CitiWidget>{
                 });
               },
             ),
+
+            DropdownButton<String>(
+              items: _cur.map((String mapItem) {
+                return DropdownMenuItem<String>(
+                  value: mapItem,
+                  child: Text(mapItem),
+                );
+              }).toList(),
+              onChanged: (String newValueSelected){
+                setState(() {
+                    this._currentCur=newValueSelected;
+                });
+              },
+              value: _currentCur,
+            ),
+
             Padding(
               padding: EdgeInsets.all(30.0),
               child: Text(
