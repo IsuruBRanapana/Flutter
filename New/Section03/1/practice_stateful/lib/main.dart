@@ -30,7 +30,14 @@ class _FavouriteCitiWidget extends State<CitiWidget>{
       body: Container(
         child: Column(
           children: <Widget>[
-            
+            TextField(
+              onSubmitted: (String name){
+                nameCity=name;
+              },
+            ),
+            Text(
+              "Your city is $nameCity"
+            )
           ],
         ),
       ),
