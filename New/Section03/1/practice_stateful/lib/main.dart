@@ -28,15 +28,21 @@ class _FavouriteCitiWidget extends State<CitiWidget>{
         ),
       ),
       body: Container(
+        margin: EdgeInsets.all(20.0),
         child: Column(
           children: <Widget>[
             TextField(
               onSubmitted: (String name){
-                nameCity=name;
+                setState(() {
+                  nameCity=name;
+                });
               },
             ),
-            Text(
-              "Your city is $nameCity"
+            Padding(
+              padding: EdgeInsets.all(30.0),
+              child: Text(
+                "Your city is $nameCity"
+              ),
             )
           ],
         ),
