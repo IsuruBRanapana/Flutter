@@ -3,8 +3,14 @@ import 'package:flutter/material.dart';
 void main(){
   runApp(
     MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: "This is the first app",
       home: ICal(),
+      theme: ThemeData(
+        brightness: Brightness.dark,
+        primaryColor: Colors.indigo,
+        accentColor: Colors.indigoAccent,
+      ),
     )
   );
 }
@@ -22,6 +28,7 @@ class _ICalState extends State<ICal>{
   final _minimumPadding=5.0;
   @override
   Widget build(BuildContext context) {
+    TextStyle textStyle=Theme.of(context).textTheme.title;
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -33,7 +40,7 @@ class _ICalState extends State<ICal>{
         child: ListView(
           children: <Widget>[
             Container(
-              padding: EdgeInsets.all(_minimumPadding*10),
+              padding: EdgeInsets.all(_minimumPadding*5),
               child: getImageAssets(),
             ),
 
@@ -41,9 +48,11 @@ class _ICalState extends State<ICal>{
             Padding(
                 padding: EdgeInsets.only(top: 5.0,bottom: 5.0),
                 child: TextField(
+                  style: textStyle,
                   keyboardType: TextInputType.number,
                   decoration: InputDecoration(
                       labelText: "Principle",
+                      labelStyle: textStyle,
                       hintText: "Enter Principle like eg:-5000",
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(5.0))
@@ -55,8 +64,10 @@ class _ICalState extends State<ICal>{
                 padding: EdgeInsets.only(top: 5.0,bottom: 5.0),
                 child:TextField(
                   keyboardType: TextInputType.number,
+                  style: textStyle,
                   decoration: InputDecoration(
                       labelText: "Rate of Interest",
+                      labelStyle: textStyle,
                       hintText: "In percent",
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(5.0))
@@ -71,8 +82,10 @@ class _ICalState extends State<ICal>{
                     Expanded(
                         child:TextField(
                           keyboardType: TextInputType.number,
+                          style: textStyle,
                           decoration: InputDecoration(
                               labelText: "Term",
+                              labelStyle: textStyle,
                               hintText: "Time in years",
                               border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(5.0))
@@ -109,8 +122,11 @@ class _ICalState extends State<ICal>{
 
                   Expanded(
                     child: RaisedButton(
+                      color: Theme.of(context).accentColor,
+                      textColor: Theme.of(context).primaryColorDark,
                       child: Text(
-                        "Calculate"
+                        "Calculate",
+                        textScaleFactor: 1.5,
                       ),
                       onPressed: (){
 
@@ -122,8 +138,11 @@ class _ICalState extends State<ICal>{
 
                   Expanded(
                     child: RaisedButton(
+                      color: Theme.of(context).primaryColorDark,
+                      textColor: Theme.of(context).primaryColorLight,
                       child: Text(
-                          "Reset"
+                        "Reset",
+                        textScaleFactor: 1.5,
                       ),
                       onPressed: (){
 
@@ -138,7 +157,8 @@ class _ICalState extends State<ICal>{
             Padding(
               padding: EdgeInsets.all(_minimumPadding),
               child: Text(
-                  "To Do text"
+                  "To Do text",
+                  style:textStyle ,
               ),
             )
 
