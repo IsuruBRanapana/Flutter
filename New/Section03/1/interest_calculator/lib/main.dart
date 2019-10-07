@@ -26,6 +26,18 @@ class ICal extends StatefulWidget{
 class _ICalState extends State<ICal>{
   var _currencies=['Rupees','Pounds','Dollars'];
   final _minimumPadding=5.0;
+  var _currentSelectedItem='';
+  var displayResult='';
+
+  @override
+  void initState(){
+    super.initState();
+    _currentSelectedItem=_currencies[0];
+  }
+
+  TextEditingController principalController=TextEditingController();
+  TextEditingController roiController=TextEditingController();
+  TextEditingController termController=TextEditingController();
   @override
   Widget build(BuildContext context) {
     TextStyle textStyle=Theme.of(context).textTheme.title;
@@ -48,6 +60,7 @@ class _ICalState extends State<ICal>{
             Padding(
                 padding: EdgeInsets.only(top: 5.0,bottom: 5.0),
                 child: TextField(
+                  controller: principalController,
                   style: textStyle,
                   keyboardType: TextInputType.number,
                   decoration: InputDecoration(
@@ -63,6 +76,7 @@ class _ICalState extends State<ICal>{
             Padding(
                 padding: EdgeInsets.only(top: 5.0,bottom: 5.0),
                 child:TextField(
+                  controller: roiController,
                   keyboardType: TextInputType.number,
                   style: textStyle,
                   decoration: InputDecoration(
@@ -81,6 +95,7 @@ class _ICalState extends State<ICal>{
                   children: <Widget>[
                     Expanded(
                         child:TextField(
+                          controller: termController,
                           keyboardType: TextInputType.number,
                           style: textStyle,
                           decoration: InputDecoration(
@@ -104,10 +119,10 @@ class _ICalState extends State<ICal>{
                           }
                           ).toList(),
 
-                          value: 'Rupees',
+                          value: _currentSelectedItem,
 
                           onChanged: (String newValueSelected){
-
+                            _onItemSelected(newValueSelected);
                           },
                         )
                     )
@@ -129,7 +144,9 @@ class _ICalState extends State<ICal>{
                         textScaleFactor: 1.5,
                       ),
                       onPressed: (){
-
+                        setState(() {
+                          this.displayResult=_calcTotal();
+                        });
                       },
                     ),
                   ),
@@ -145,6 +162,7 @@ class _ICalState extends State<ICal>{
                         textScaleFactor: 1.5,
                       ),
                       onPressed: (){
+                        _reset();
 
                       },
                     ),
@@ -157,7 +175,7 @@ class _ICalState extends State<ICal>{
             Padding(
               padding: EdgeInsets.all(_minimumPadding),
               child: Text(
-                  "To Do text",
+                  this.displayResult,
                   style:textStyle ,
               ),
             )
@@ -181,5 +199,28 @@ class _ICalState extends State<ICal>{
     );
   }
 
+  void _onItemSelected(String selectedItem){
+    setState(() {
+      this._currentSelectedItem=selectedItem;
+    });
+  }
+
+  String _calcTotal(){
+    double principal=double.parse(principalController.text);
+    double roi=double.parse(roiController.text);
+    double term=double.parse(termController.text);
+
+    double totalAmount = principal+(principal*roi*term)/100;
+    String result="After $term years, your total payble amount is $totalAmount $_currentSelectedItem" ;
+    return result;
+  }
+
+  void _reset(){
+    principalController.text='';
+    roiController.text='';
+    termController.text='';
+    displayResult='';
+    _currentSelectedItem=_currencies[0];
+  }
 }
 
