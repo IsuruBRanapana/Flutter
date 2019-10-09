@@ -22,8 +22,7 @@ class ICal extends StatefulWidget {
 }
 
 class _ICalState extends State<ICal> {
-
-  var _formKey=GlobalKey<FormState>();
+  var _formKey = GlobalKey<FormState>();
   var _currencies = ['Rupees', 'Pounds', 'Dollars'];
   final _minimumPadding = 5.0;
   var _currentSelectedItem = '';
@@ -62,8 +61,8 @@ class _ICalState extends State<ICal> {
                     controller: principalController,
                     style: textStyle,
                     // ignore: missing_return
-                    validator: (String value){
-                      if(value.isEmpty){
+                    validator: (String value) {
+                      if (value.isEmpty) {
                         return "Please enter the value";
                       }
                     },
@@ -71,19 +70,33 @@ class _ICalState extends State<ICal> {
                     decoration: InputDecoration(
                         labelText: "Principle",
                         labelStyle: textStyle,
+                        errorStyle: TextStyle(
+                          color: Colors.yellowAccent,
+                          fontSize: 15.0,
+                        ),
                         hintText: "Enter Principle like eg:-5000",
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(5.0))),
                   )),
               Padding(
                   padding: EdgeInsets.only(top: 5.0, bottom: 5.0),
-                  child: TextField(
+                  child: TextFormField(
                     controller: roiController,
+                    // ignore: missing_return
+                    validator: (String value) {
+                      if (value.isEmpty) {
+                        return "Enter the Rate of Interest";
+                      }
+                    },
                     keyboardType: TextInputType.number,
                     style: textStyle,
                     decoration: InputDecoration(
                         labelText: "Rate of Interest",
                         labelStyle: textStyle,
+                        errorStyle: TextStyle(
+                          color: Colors.yellowAccent,
+                          fontSize: 15.0,
+                        ),
                         hintText: "In percent",
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(5.0))),
@@ -94,14 +107,24 @@ class _ICalState extends State<ICal> {
                   child: Row(
                     children: <Widget>[
                       Expanded(
-                          child: TextField(
+                          child: TextFormField(
                         controller: termController,
+                        // ignore: missing_return
+                        validator: (String value) {
+                          if (value.isEmpty) {
+                            return "Enter the term";
+                          }
+                        },
                         keyboardType: TextInputType.number,
                         style: textStyle,
                         decoration: InputDecoration(
                             labelText: "Term",
                             labelStyle: textStyle,
                             hintText: "Time in years",
+                            errorStyle: TextStyle(
+                              color: Colors.yellowAccent,
+                              fontSize: 15.0,
+                            ),
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(5.0))),
                       )),
@@ -138,7 +161,7 @@ class _ICalState extends State<ICal> {
                         ),
                         onPressed: () {
                           setState(() {
-                            if(_formKey.currentState.validate()) {
+                            if (_formKey.currentState.validate()) {
                               this.displayResult = _calcTotal();
                             }
                           });
@@ -215,4 +238,5 @@ class _ICalState extends State<ICal> {
     displayResult = '';
     _currentSelectedItem = _currencies[0];
   }
+
 }
