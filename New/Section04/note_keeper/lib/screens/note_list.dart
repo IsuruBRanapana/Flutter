@@ -15,19 +15,25 @@ class NoteListState extends State<NoteList> {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Notes"),
-      ),
-      body: getListOfNotes(),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context) {
-            return NoteDetail();
-          }));
-        },
-        tooltip: "Add Note",
-        child: Icon(Icons.add),
+    return WillPopScope(
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text("Notes"),
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back),
+            onPressed: () {
+              gotoBackScreen();
+            },
+          ),
+        ),
+        body: getListOfNotes(),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            navigateToDetail("Add Item");
+          },
+          tooltip: "Add Note",
+          child: Icon(Icons.add),
+        ),
       ),
     );
   }
@@ -52,9 +58,21 @@ class NoteListState extends State<NoteList> {
                 Icons.delete,
                 color: Colors.grey,
               ),
-              onTap: () {},
+              onTap: () {
+                navigateToDetail("Edit Detail");
+              },
             ),
           );
         });
+  }
+
+  void navigateToDetail(String title) {
+    Navigator.push(context, MaterialPageRoute(builder: (context) {
+      return NoteDetail(title);
+    }));
+  }
+
+  void gotoBackScreen() {
+    Navigator.pop(context);
   }
 }
