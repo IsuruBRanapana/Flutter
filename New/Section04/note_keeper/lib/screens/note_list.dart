@@ -16,6 +16,9 @@ class NoteListState extends State<NoteList> {
   Widget build(BuildContext context) {
     // TODO: implement build
     return WillPopScope(
+      onWillPop: (){
+        gotoBackScreen();
+      },
       child: Scaffold(
         appBar: AppBar(
           title: Text("Notes"),
@@ -35,6 +38,7 @@ class NoteListState extends State<NoteList> {
           child: Icon(Icons.add),
         ),
       ),
+
     );
   }
 
