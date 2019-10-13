@@ -77,10 +77,14 @@ class NoteListState extends State<NoteList> {
         });
   }
 
-  void navigateToDetail(Note note,String title) {
-    Navigator.push(context, MaterialPageRoute(builder: (context) {
+  void navigateToDetail(Note note,String title) async {
+    bool result=await Navigator.push(context, MaterialPageRoute(builder: (context) {
       return NoteDetail(note,title);
     }));
+
+    if(result){
+      updateListView();
+    }
   }
 
 

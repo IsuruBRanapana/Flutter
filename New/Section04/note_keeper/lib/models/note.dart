@@ -26,7 +26,7 @@ class Note{
     }
   }
 
-  set (String newDate){
+  set date(String newDate){
       this._date=newDate;
   }
 

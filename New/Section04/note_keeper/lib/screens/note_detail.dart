@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:note_keeper/models/note.dart';
 import 'package:note_keeper/utils/database_helper.dart';
 import 'dart:async';
@@ -74,7 +75,9 @@ class NoteDetailState extends State<NoteDetail> {
                 child: TextField(
                   controller: titleController,
                   style: textStyle,
-                  onChanged: (value) {},
+                  onChanged: (value) {
+                    updateTitle();
+                  },
                   decoration: InputDecoration(
                       labelText: "Title",
                       labelStyle: textStyle,
@@ -87,7 +90,9 @@ class NoteDetailState extends State<NoteDetail> {
                 child: TextField(
                   controller: descriptionController,
                   style: textStyle,
-                  onChanged: (value) {},
+                  onChanged: (value) {
+                    updateDescription();
+                  },
                   decoration: InputDecoration(
                       labelText: "Description",
                       labelStyle: textStyle,
@@ -108,7 +113,9 @@ class NoteDetailState extends State<NoteDetail> {
                           textScaleFactor: 1.5,
                         ),
                         onPressed: () {
-                          setState(() {});
+                          setState(() {
+                            _save();
+                          });
                         },
                       ),
                     ),
@@ -124,7 +131,9 @@ class NoteDetailState extends State<NoteDetail> {
                           textScaleFactor: 1.5,
                         ),
                         onPressed: () {
-                          setState(() {});
+                          setState(() {
+                            _delete();
+                          });
                         },
                       ),
                     )
@@ -139,7 +148,7 @@ class NoteDetailState extends State<NoteDetail> {
   }
 
   void gotoBackScreen() {
-    Navigator.pop(context);
+    Navigator.pop(context,true);
   }
 
   void updatePriorityAsInt(String value){
@@ -172,5 +181,55 @@ class NoteDetailState extends State<NoteDetail> {
 
   void updateDescription(){
     note.description=descriptionController.text;
+  }
+
+  void _save() async{
+
+    int result;
+    gotoBackScreen();
+    note.date=DateFormat.yMMMd().format(DateTime.now());
+    if(note!=null){
+      //update database
+      result=await databaseHelper.updateNote(note);
+    }else{
+      result=await databaseHelper.insertNote(note);
+    }
+
+    if(result!=0){
+      _showAlertDialogBox('Status','Note saved successful');
+    }else{
+      _showAlertDialogBox('Status','Error occured');
+    }
+  }
+
+  void _delete() async{
+    gotoBackScreen();
+    if(note!=null){
+      _showAlertDialogBox('Status', 'Nothing to Delete');
+      return;
+    }
+
+    //if there are note to delete
+    int result=await databaseHelper.deleteNote(note.id);
+    if(result!=0){
+      _showAlertDialogBox('Status', 'Note deleted');
+    }else{
+      _showAlertDialogBox('Status', 'Delete not success');
+    }
+  }
+
+  void _showAlertDialogBox(String title, String message){
+    AlertDialog alertDialog=AlertDialog(
+      title: Text(
+          title
+      ),
+      content: Text(
+          message
+      ),
+    );
+    showDialog(
+        context: context,
+      builder: (_)=>alertDialog
+    );
   }
 }
