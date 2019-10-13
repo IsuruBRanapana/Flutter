@@ -1,20 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:note_keeper/models/note.dart';
+import 'package:note_keeper/utils/database_helper.dart';
+import 'dart:async';
+import 'package:sqflite/sqflite.dart';
 
 class NoteDetail extends StatefulWidget {
 
-  String AppbarTitle;
-  NoteDetail(this.AppbarTitle);
+  String appbarTitle;
+  NoteDetail(this.appbarTitle);
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
-    return NoteDetailState(this.AppbarTitle);
+    return NoteDetailState(this.appbarTitle);
   }
 }
 
 class NoteDetailState extends State<NoteDetail> {
   static var _priorities = ["High", "Low"];
-  String AppbarTitle;
-  NoteDetailState(this.AppbarTitle);
+  String appbarTitle;
+  NoteDetailState(this.appbarTitle);
   TextEditingController titleController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
 
@@ -24,7 +28,7 @@ class NoteDetailState extends State<NoteDetail> {
     TextStyle textStyle = Theme.of(context).textTheme.title;
     return Scaffold(
       appBar: AppBar(
-        title: Text(this.AppbarTitle),
+        title: Text(this.appbarTitle),
       ),
       body: Padding(
         padding: EdgeInsets.all(10.0),
