@@ -1,17 +1,30 @@
 import 'package:flutter/material.dart';
 
 void main(){
-  runApp(myApp());
+  runApp(MyApp());
 }
 
-class myApp extends StatefulWidget{
+class MyApp extends StatefulWidget{
   @override
   State<StatefulWidget> createState() {
-    return _myAppState();
+    return _MyAppState();
   }
 }
 
-class _myAppState extends State<myApp>{
+class _MyAppState extends State<MyApp>{
+  String name,profession,message;
+  List<DropdownMenuItem> items=[
+    DropdownMenuItem(
+      child:Text(
+        'Student'
+      ),
+    ),
+    DropdownMenuItem(
+      child:Text(
+          'Professor'
+      ),
+    ),
+  ];
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -34,7 +47,16 @@ class _myAppState extends State<myApp>{
   Widget formUI(){
     return Column(
       children: <Widget>[
-        
+        TextFormField(
+          decoration: InputDecoration(hintText: 'Name'),
+          maxLength: 32,
+        ),
+        DropdownButton(
+          items: items,
+          onChanged: ((val){
+            profession=val;
+          }),
+        )
       ],
     );
   }
