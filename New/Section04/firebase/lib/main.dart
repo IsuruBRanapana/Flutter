@@ -52,21 +52,32 @@ class _MyAppState extends State<MyApp> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        TextFormField(
-          decoration: InputDecoration(hintText: 'Name'),
-          maxLength: 32,
-          onSaved: ((val) {
-            name = val;
-          }),
-          validator: validateName,
-        ),
-        DropdownButton(
-          items: items,
-          onChanged: ((val) {
-            profession = val;
-          }),
-          hint: Text('Profession'),
-          value: profession,
+        Row(
+          children: <Widget>[
+            Flexible(
+              child: TextFormField(
+                decoration: InputDecoration(hintText: 'Name'),
+                maxLength: 32,
+                onSaved: ((val) {
+                  name = val;
+                }),
+                validator: validateName,
+              ),
+            ),
+            SizedBox(
+              width: 10.0,
+            ),
+            DropdownButtonHideUnderline(
+              child: DropdownButton(
+                items: items,
+                onChanged: ((val) {
+                  profession = val;
+                }),
+                hint: Text('Profession'),
+                value: profession,
+              ),
+            ),
+          ],
         ),
         TextFormField(
           decoration: InputDecoration(hintText: 'Message'),
