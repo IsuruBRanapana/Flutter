@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'dart:async';
 
 class Home extends StatefulWidget{
   @override
@@ -8,6 +10,18 @@ class Home extends StatefulWidget{
 }
 
 class _HomeState extends State<Home>{
+  StreamSubscription <QuerySnapshot> subscription;
+  List<DocumentSnapshot> snapshot;
+  CollectionReference collectionReference=Firestore.instance.collection('TopPost');
+  @override
+  void initState() {
+    subscription=collectionReference.snapshots().listen((datasnapshot){
+      setState(() {
+        snapshot=datasnapshot.documents;
+      });
+    });
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
