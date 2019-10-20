@@ -104,6 +104,37 @@ class _HomeState extends State<Home>{
           ],
         ),
       ),
+      body: ListView(
+        children: <Widget>[
+          Container(
+            height: 250,
+            child: ListView.builder(
+              itemCount: snapshot.length,
+                itemBuilder:(context,index){
+                  return Card(
+                    elevation:10.0,
+                    child: Column(
+                      children: <Widget>[
+                        ClipRRect(
+                          borderRadius:BorderRadius.circular(10.0),
+                          child: Image.network(
+                              snapshot[index].data['url'],
+                            height: 180,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 10.0,
+                        ),
+                        Text(snapshot[index].data['title'])
+                      ],
+                    ),
+                  );
+                }
+            ),
+          )
+        ],
+      ),
     );
   }
 
