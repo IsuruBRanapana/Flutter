@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:newapp/auth.dart';
 import 'login_page.dart';
 
 void main() => runApp(MyApp());
@@ -11,7 +12,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: LoginPage(),
+      home: LoginPage(auth: Auth(),),
     );
   }
 }
