@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1069174729137",
+    "firebase_url": "https://prctice-d6282.firebaseio.com",
+    "project_id": "prctice-d6282",
+    "storage_bucket": "prctice-d6282.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1069174729137:android:835f3db1eb4543b480b590",
+        "android_client_info": {
+          "package_name": "com.isuru.newapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1069174729137-7331n950uhkkca8padt48jghd9j0ltrh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBhexK3l7jZ0tIRvuFotS12xjK4gYHak6o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1069174729137-7331n950uhkkca8padt48jghd9j0ltrh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
