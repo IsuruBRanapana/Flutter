@@ -20,6 +20,18 @@ class HomePage extends StatelessWidget{
     return Scaffold(
       appBar: AppBar(
         title: Text('Welcome'),
+        actions: <Widget>[
+          FlatButton(
+            child: Text(
+              'Logout',
+              style: TextStyle(
+                fontSize: 17.0,
+                color: Colors.white
+              ),
+            ),
+            onPressed: _signOut,
+          )
+        ],
       ),
       body: Container(
         child: Center(
