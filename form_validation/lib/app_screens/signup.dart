@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:form_validation/app_screens/home.dart';
 
 class SignUpPage extends StatefulWidget {
   SignUpPage({Key key}) : super(key: key);
@@ -66,6 +67,7 @@ class _StateSignUpPage extends State<SignUpPage> {
         RaisedButton(
           onPressed: _validateInputs,
           child: Text('Validate'),
+          
         )
       ],
     );
@@ -75,6 +77,9 @@ class _StateSignUpPage extends State<SignUpPage> {
     if (_formKey.currentState.validate()) {
       //if all data are correct then save data to out variables
       _formKey.currentState.save();
+      Navigator.push(context, MaterialPageRoute(
+        builder: (context)=> HomePage()
+      ));
     } else {
       //If all data are not valid then start auto validation
       setState(() {
