@@ -92,9 +92,11 @@ class _StateSignUpPage extends State<SignUpPage> {
   }
 
   String validateMobile(String value) {
-    if (value.length != 10) {
-      return 'Mobile number must include 10 digits';
-    } else {
+    Pattern patternMob = r'(^(?:[+0]9)?[0-9]{10}$)';
+    RegExp regex=RegExp(patternMob);
+    if(!regex.hasMatch(value)){
+      return 'Enter valid Mobile';
+    }else{
       return null;
     }
   }
